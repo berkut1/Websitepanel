@@ -199,6 +199,8 @@ namespace WebsitePanel.Providers.Virtualization
                         {
                             vm.VirtualHardDrivePath = vm.Disks[0].Path;
                             vm.HddSize = Convert.ToInt32(vm.Disks[0].FileSize / Constants.Size1G);
+                            vm.IOPSmin = vm.Disks[0].MinimumIOPS;
+                            vm.IOPSmax = vm.Disks[0].MaximumIOPS;
                         }
 
                         // network adapters
@@ -399,6 +401,7 @@ namespace WebsitePanel.Providers.Virtualization
                 VirtualMachineHelper.UpdateProcessors(PowerShell, realVm, vm.CpuCores, CpuLimitSettings, CpuReserveSettings, CpuWeightSettings);
                 MemoryHelper.Update(PowerShell, realVm, vm.RamSize, vm.DynamicMemory);
                 NetworkAdapterHelper.Update(PowerShell, vm);
+                HardDriveHelper.UpdateIOPS(PowerShell, realVm, vm.IOPSmin, vm.IOPSmax); //IOPS
             }
             catch (Exception ex)
             {

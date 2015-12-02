@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="btnCancel.Text" xml:space="preserve">
     <value>Cancel</value>
@@ -212,5 +212,23 @@
   </data>
   <data name="SnapshotsValidator.ErrorMessage" xml:space="preserve">
     <value>Please enter the number of snapshots</value>
+  </data>
+  <data name="lblHddIOPSmax.Text" xml:space="preserve">
+    <value>IOPS Maximum:</value>
+  </data>
+  <data name="lblHddIOPSmin.Text" xml:space="preserve">
+    <value>IOPS Minimum:</value>
+  </data>
+  <data name="locIOPSmax.Text" xml:space="preserve">
+    <value>IOPS for 8k</value>
+  </data>
+  <data name="locIOPSmin.Text" xml:space="preserve">
+    <value>IOPS for 8k</value>
+  </data>
+  <data name="RequireHddIOPSmaxValidator.ErrorMessage" xml:space="preserve">
+    <value>Please specify IOPS</value>
+  </data>
+  <data name="RequireHddIOPSminValidator.ErrorMessage" xml:space="preserve">
+    <value>Please specify IOPS</value>
   </data>
 </root>

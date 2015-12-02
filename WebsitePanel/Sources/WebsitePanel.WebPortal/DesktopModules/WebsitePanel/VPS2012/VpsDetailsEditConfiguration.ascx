@@ -64,6 +64,32 @@
                                 <td><asp:Localize ID="locGB" runat="server" meta:resourcekey="locGB" Text="GB"/></td>
                             </tr>
                         </table>
+                        <table cellpadding="3">
+                            <tr>
+                                <td style="width:60px;"><asp:Label ID="lblHddIOPSmin" runat="server" AssociatedControlID="txtHddIOPSmin"
+                                        meta:resourcekey="lblHddIOPSmin" Text="IOPS Min:" CssClass="Medium" /></td>
+                                <td>
+                                    <asp:TextBox ID="txtHddIOPSmin" runat="server" CssClass="HugeTextBox" Width="70"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequireHddIOPSminValidator" runat="server" Text="*" Display="Dynamic"
+                                        ControlToValidate="txtHddIOPSmin" meta:resourcekey="RequireHddIOPSminValidator" SetFocusOnError="true"
+                                        ValidationGroup="Vps">*</asp:RequiredFieldValidator>
+                                </td>      
+                                <td><asp:Localize ID="locIOPSmin" runat="server" meta:resourcekey="locIOPSmin" Text="8k"/></td>                          
+                            </tr>
+                        </table>
+                        <table cellpadding="3">
+                            <tr>
+                                <td style="width:60px;"><asp:Label ID="lblHddIOPSmax" runat="server" AssociatedControlID="txtHddIOPSmax"
+                                        meta:resourcekey="lblHddIOPSmax" Text="IOPS Max:" CssClass="Medium" /></td>
+                                <td>
+                                    <asp:TextBox ID="txtHddIOPSmax" runat="server" CssClass="HugeTextBox" Width="70"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequireHddIOPSmaxValidator" runat="server" Text="*" Display="Dynamic"
+                                        ControlToValidate="txtHddIOPSmax" meta:resourcekey="RequireHddIOPSmaxValidator" SetFocusOnError="true"
+                                        ValidationGroup="Vps">*</asp:RequiredFieldValidator>
+                                </td>   
+                                <td><asp:Localize ID="locIOPSmax" runat="server" meta:resourcekey="locIOPSmax" Text="8k"/></td>                             
+                            </tr>
+                        </table>
                     </asp:Panel>
                     
                     <wsp:DynamicMemoryControl runat="server" ID="DynamicMemorySetting" Mode="Edit"/>

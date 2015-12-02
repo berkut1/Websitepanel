@@ -175,6 +175,42 @@ namespace WebsitePanel.Portal.VPS2012 {
         protected global::System.Web.UI.WebControls.Literal litHdd;
         
         /// <summary>
+        /// lblHddIOPSmin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Localize lblHddIOPSmin;
+        
+        /// <summary>
+        /// litHddIOPSmin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litHddIOPSmin;
+        
+        /// <summary>
+        /// lblHddIOPSmax control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Localize lblHddIOPSmax;
+        
+        /// <summary>
+        /// litHddIOPSmax control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litHddIOPSmax;
+        
+        /// <summary>
         /// DynamicMemorySetting control.
         /// </summary>
         /// <remarks>

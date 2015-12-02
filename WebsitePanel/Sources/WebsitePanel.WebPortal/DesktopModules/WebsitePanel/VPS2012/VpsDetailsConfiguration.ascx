@@ -77,6 +77,24 @@
                                 </td>
                             </tr>
                         </table>
+                        <table cellspacing="5">
+                            <tr>
+                                <td class="Medium"><asp:Localize ID="lblHddIOPSmin" runat="server"
+                                        meta:resourcekey="lblHddIOPSmin" Text="IOPS Minimum:" /></td>
+                                <td class="MediumBold">
+                                    <asp:Literal ID="litHddIOPSmin" runat="server" Text="[hddiopsmin]"></asp:Literal>
+                                </td>
+                            </tr>
+                        </table>
+                        <table cellspacing="5">
+                            <tr>
+                                <td class="Medium"><asp:Localize ID="lblHddIOPSmax" runat="server"
+                                        meta:resourcekey="lblHddIOPSmax" Text="IOPS Maximum:" /></td>
+                                <td class="MediumBold">
+                                    <asp:Literal ID="litHddIOPSmax" runat="server" Text="[hddiopsmax]"></asp:Literal>
+                                </td>
+                            </tr>
+                        </table>
                     </asp:Panel>
                     
                     <wsp:DynamicMemoryControl runat="server" ID="DynamicMemorySetting" Mode="Display"/>

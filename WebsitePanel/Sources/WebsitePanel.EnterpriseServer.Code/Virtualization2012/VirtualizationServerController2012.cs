@@ -58,6 +58,7 @@ namespace WebsitePanel.EnterpriseServer
         private const int DEFAULT_PASSWORD_LENGTH = 12;
         private const int DEFAULT_RAM_SIZE = 512; // megabytes
         private const int DEFAULT_HDD_SIZE = 20; // gigabytes
+        private const int DEFAULT_HDD_IOPS = 0; // 0 = off
         private const int DEFAULT_PRIVATE_IPS_NUMBER = 1;
         private const int DEFAULT_SNAPSHOTS_NUMBER = 5;
 
@@ -269,6 +270,9 @@ namespace WebsitePanel.EnterpriseServer
             int hddGB = cntx.Quotas[Quotas.VPS2012_HDD].QuotaAllocatedValue;
             if (hddGB == -1) // unlimited is not possible
                 hddGB = DEFAULT_HDD_SIZE;
+            // IOPS
+            int hddIOPSmin = DEFAULT_HDD_IOPS;
+            int hddIOPSmax = DEFAULT_HDD_IOPS;
 
             // snapshots
             int snapshots = cntx.Quotas[Quotas.VPS2012_SNAPSHOTS_NUMBER].QuotaAllocatedValue;
@@ -308,7 +312,7 @@ namespace WebsitePanel.EnterpriseServer
 
             // create server and return result
             return CreateVirtualMachine(packageId, hostname, osTemplate, password, summaryLetterEmail,
-                cpuCores, ramMB, hddGB, snapshots,
+                cpuCores, ramMB, hddGB, hddIOPSmin, hddIOPSmax, snapshots,
                 dvdInstalled, bootFromCD, numLock,
                 startShutdownAllowed, pauseResumeAllowed, rebootAllowed, resetAllowed, reinstallAllowed,
                 externalNetworkEnabled, externalAddressesNumber, randomExternalAddresses, externalAddresses,
@@ -317,7 +321,7 @@ namespace WebsitePanel.EnterpriseServer
 
         public static IntResult CreateVirtualMachine(int packageId,
                 string hostname, string osTemplateFile, string password, string summaryLetterEmail,
-                int cpuCores, int ramMB, int hddGB, int snapshots,
+                int cpuCores, int ramMB, int hddGB, int hddIOPSmin, int hddIOPSmax, int snapshots,
                 bool dvdInstalled, bool bootFromCD, bool numLock,
                 bool startShutdownAllowed, bool pauseResumeAllowed, bool rebootAllowed, bool resetAllowed, bool reinstallAllowed,
                 bool externalNetworkEnabled, int externalAddressesNumber, bool randomExternalAddresses, int[] externalAddresses,
@@ -471,6 +475,8 @@ namespace WebsitePanel.EnterpriseServer
                 vm.CpuCores = cpuCores;
                 vm.RamSize = ramMB;
                 vm.HddSize = hddGB;
+                vm.IOPSmin = hddIOPSmin;
+                vm.IOPSmax = hddIOPSmax;
                 vm.SnapshotsNumber = snapshots;
                 vm.DvdDriveInstalled = dvdInstalled;
                 vm.BootFromCD = bootFromCD;
@@ -1157,6 +1163,8 @@ namespace WebsitePanel.EnterpriseServer
                 item.RamSize = vm.RamSize;
                 item.DynamicMemory = vm.DynamicMemory;
                 item.HddSize = vm.HddSize;
+                item.IOPSmin = vm.IOPSmin;
+                item.IOPSmax = vm.IOPSmax;
                 item.VirtualHardDrivePath = vm.VirtualHardDrivePath;
                 item.RootFolderPath = Path.GetDirectoryName(vm.VirtualHardDrivePath);
                 item.SnapshotsNumber = cntx.Quotas[Quotas.VPS2012_SNAPSHOTS_NUMBER].QuotaAllocatedValue;
@@ -1909,7 +1917,7 @@ namespace WebsitePanel.EnterpriseServer
         #endregion
 
         #region VPS – Edit Configuration
-        public static ResultObject UpdateVirtualMachineConfiguration(int itemId, int cpuCores, int ramMB, int hddGB, int snapshots, bool dvdInstalled, bool bootFromCD, bool numLock, bool startShutdownAllowed, bool pauseResumeAllowed, bool rebootAllowed, bool resetAllowed, bool reinstallAllowed, bool externalNetworkEnabled, bool privateNetworkEnabled, VirtualMachine otherSettings)
+        public static ResultObject UpdateVirtualMachineConfiguration(int itemId, int cpuCores, int ramMB, int hddGB, int hddIOPSmin, int hddIOPSmax, int snapshots, bool dvdInstalled, bool bootFromCD, bool numLock, bool startShutdownAllowed, bool pauseResumeAllowed, bool rebootAllowed, bool resetAllowed, bool reinstallAllowed, bool externalNetworkEnabled, bool privateNetworkEnabled, VirtualMachine otherSettings)
         {
             ResultObject res = new ResultObject();
 
@@ -2029,6 +2037,8 @@ namespace WebsitePanel.EnterpriseServer
                 vm.CpuCores = cpuCores;
                 vm.RamSize = ramMB;
                 vm.HddSize = hddGB;
+                vm.IOPSmin = hddIOPSmin;
+                vm.IOPSmax = hddIOPSmax;
                 vm.SnapshotsNumber = snapshots;
                 
                 vm.BootFromCD = bootFromCD;
