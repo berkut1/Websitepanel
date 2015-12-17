@@ -39,7 +39,7 @@ namespace WebsitePanel.EnterpriseServer {
         private System.Threading.SendOrPostCallback GetVirtualMachinesByServiceIdOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetVirtualMachineItemOperationCompleted;
-        
+
         private System.Threading.SendOrPostCallback EvaluateVirtualMachineTemplateOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetExternalNetworkDetailsOperationCompleted;
@@ -75,6 +75,8 @@ namespace WebsitePanel.EnterpriseServer {
         private System.Threading.SendOrPostCallback GetVirtualMachineThumbnailOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetVirtualMachineGeneralDetailsOperationCompleted;
+
+        private System.Threading.SendOrPostCallback GetVirtualMachineConfigurationDetailsOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetVirtualMachineExtendedInfoOperationCompleted;
         
@@ -177,7 +179,7 @@ namespace WebsitePanel.EnterpriseServer {
         
         /// <remarks/>
         public event GetVirtualMachineItemCompletedEventHandler GetVirtualMachineItemCompleted;
-        
+
         /// <remarks/>
         public event EvaluateVirtualMachineTemplateCompletedEventHandler EvaluateVirtualMachineTemplateCompleted;
         
@@ -231,7 +233,10 @@ namespace WebsitePanel.EnterpriseServer {
         
         /// <remarks/>
         public event GetVirtualMachineGeneralDetailsCompletedEventHandler GetVirtualMachineGeneralDetailsCompleted;
-        
+
+        /// <remarks/>
+        public event GetVirtualMachineConfigurationDetailsCompletedEventHandler GetVirtualMachineConfigurationDetailsCompleted;
+
         /// <remarks/>
         public event GetVirtualMachineExtendedInfoCompletedEventHandler GetVirtualMachineExtendedInfoCompleted;
         
@@ -463,7 +468,7 @@ namespace WebsitePanel.EnterpriseServer {
                 this.GetVirtualMachinesByServiceIdCompleted(this, new GetVirtualMachinesByServiceIdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
-        
+  
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://smbsaas/websitepanel/enterpriseserver/GetVirtualMachineItem", RequestNamespace="http://smbsaas/websitepanel/enterpriseserver", ResponseNamespace="http://smbsaas/websitepanel/enterpriseserver", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public VirtualMachine GetVirtualMachineItem(int itemId) {
@@ -504,7 +509,7 @@ namespace WebsitePanel.EnterpriseServer {
                 this.GetVirtualMachineItemCompleted(this, new GetVirtualMachineItemCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
-        
+
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://smbsaas/websitepanel/enterpriseserver/EvaluateVirtualMachineTemplate", RequestNamespace="http://smbsaas/websitepanel/enterpriseserver", ResponseNamespace="http://smbsaas/websitepanel/enterpriseserver", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public string EvaluateVirtualMachineTemplate(int itemId, string template) {
@@ -1159,7 +1164,9 @@ namespace WebsitePanel.EnterpriseServer {
                     string summaryLetterEmail, 
                     int cpuCores, 
                     int ramMB, 
-                    int hddGB, 
+                    int hddGB,
+                    int hddIOPSmin, 
+                    int hddIOPSmax,
                     int snapshots, 
                     bool dvdInstalled, 
                     bool bootFromCD, 
@@ -1187,6 +1194,8 @@ namespace WebsitePanel.EnterpriseServer {
                         cpuCores,
                         ramMB,
                         hddGB,
+                        hddIOPSmin,
+                        hddIOPSmax,
                         snapshots,
                         dvdInstalled,
                         bootFromCD,
@@ -1217,7 +1226,9 @@ namespace WebsitePanel.EnterpriseServer {
                     string summaryLetterEmail, 
                     int cpuCores, 
                     int ramMB, 
-                    int hddGB, 
+                    int hddGB,
+                    int hddIOPSmin, 
+                    int hddIOPSmax,
                     int snapshots, 
                     bool dvdInstalled, 
                     bool bootFromCD, 
@@ -1247,6 +1258,8 @@ namespace WebsitePanel.EnterpriseServer {
                         cpuCores,
                         ramMB,
                         hddGB,
+                        hddIOPSmin,
+                        hddIOPSmax,
                         snapshots,
                         dvdInstalled,
                         bootFromCD,
@@ -1282,7 +1295,9 @@ namespace WebsitePanel.EnterpriseServer {
                     string summaryLetterEmail, 
                     int cpuCores, 
                     int ramMB, 
-                    int hddGB, 
+                    int hddGB,
+                    int hddIOPSmin, 
+                    int hddIOPSmax,
                     int snapshots, 
                     bool dvdInstalled, 
                     bool bootFromCD, 
@@ -1301,7 +1316,7 @@ namespace WebsitePanel.EnterpriseServer {
                     bool randomPrivateAddresses, 
                     string[] privateAddresses, 
                     VirtualMachine otherSettings) {
-            this.CreateVirtualMachineAsync(packageId, hostname, osTemplateFile, password, summaryLetterEmail, cpuCores, ramMB, hddGB, snapshots, dvdInstalled, bootFromCD, numLock, startShutdownAllowed, pauseResumeAllowed, rebootAllowed, resetAllowed, reinstallAllowed, externalNetworkEnabled, externalAddressesNumber, randomExternalAddresses, externalAddresses, privateNetworkEnabled, privateAddressesNumber, randomPrivateAddresses, privateAddresses, otherSettings, null);
+            this.CreateVirtualMachineAsync(packageId, hostname, osTemplateFile, password, summaryLetterEmail, cpuCores, ramMB, hddGB, hddIOPSmin, hddIOPSmax, snapshots, dvdInstalled, bootFromCD, numLock, startShutdownAllowed, pauseResumeAllowed, rebootAllowed, resetAllowed, reinstallAllowed, externalNetworkEnabled, externalAddressesNumber, randomExternalAddresses, externalAddresses, privateNetworkEnabled, privateAddressesNumber, randomPrivateAddresses, privateAddresses, otherSettings, null);
         }
         
         /// <remarks/>
@@ -1313,7 +1328,9 @@ namespace WebsitePanel.EnterpriseServer {
                     string summaryLetterEmail, 
                     int cpuCores, 
                     int ramMB, 
-                    int hddGB, 
+                    int hddGB,
+                    int hddIOPSmin, 
+                    int hddIOPSmax,
                     int snapshots, 
                     bool dvdInstalled, 
                     bool bootFromCD, 
@@ -1345,6 +1362,8 @@ namespace WebsitePanel.EnterpriseServer {
                         cpuCores,
                         ramMB,
                         hddGB,
+                        hddIOPSmin,
+                        hddIOPSmax,
                         snapshots,
                         dvdInstalled,
                         bootFromCD,
@@ -1551,6 +1570,55 @@ namespace WebsitePanel.EnterpriseServer {
             if ((this.GetVirtualMachineGeneralDetailsCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetVirtualMachineGeneralDetailsCompleted(this, new GetVirtualMachineGeneralDetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://smbsaas/websitepanel/enterpriseserver/GetVirtualMachineConfigurationDetails", RequestNamespace = "http://smbsaas/websitepanel/enterpriseserver", ResponseNamespace = "http://smbsaas/websitepanel/enterpriseserver", Use = System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle = System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public VirtualMachine GetVirtualMachineConfigurationDetails(int itemId)
+        {
+            object[] results = this.Invoke("GetVirtualMachineConfigurationDetails", new object[] {
+                        itemId});
+            return ((VirtualMachine)(results[0]));
+        }
+
+        /// <remarks/>
+        public System.IAsyncResult BeginGetVirtualMachineConfigurationDetails(int itemId, System.AsyncCallback callback, object asyncState)
+        {
+            return this.BeginInvoke("GetVirtualMachineConfigurationDetails", new object[] {
+                        itemId}, callback, asyncState);
+        }
+
+        /// <remarks/>
+        public VirtualMachine EndGetVirtualMachineConfigurationDetails(System.IAsyncResult asyncResult)
+        {
+            object[] results = this.EndInvoke(asyncResult);
+            return ((VirtualMachine)(results[0]));
+        }
+
+        /// <remarks/>
+        public void GetVirtualMachineConfigurationDetailsAsync(int itemId)
+        {
+            this.GetVirtualMachineConfigurationDetailsAsync(itemId, null);
+        }
+
+        /// <remarks/>
+        public void GetVirtualMachineConfigurationDetailsAsync(int itemId, object userState)
+        {
+            if ((this.GetVirtualMachineConfigurationDetailsOperationCompleted == null))
+            {
+                this.GetVirtualMachineConfigurationDetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetVirtualMachineConfigurationDetailsOperationCompleted);
+            }
+            this.InvokeAsync("GetVirtualMachineConfigurationDetails", new object[] {
+                        itemId}, this.GetVirtualMachineConfigurationDetailsOperationCompleted, userState);
+        }
+
+        private void OnGetVirtualMachineConfigurationDetailsOperationCompleted(object arg)
+        {
+            if ((this.GetVirtualMachineConfigurationDetailsCompleted != null))
+            {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetVirtualMachineConfigurationDetailsCompleted(this, new GetVirtualMachineConfigurationDetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1821,7 +1889,9 @@ namespace WebsitePanel.EnterpriseServer {
                     int itemId, 
                     int cpuCores, 
                     int ramMB, 
-                    int hddGB, 
+                    int hddGB,
+                    int hddIOPSmin, 
+                    int hddIOPSmax,
                     int snapshots, 
                     bool dvdInstalled, 
                     bool bootFromCD, 
@@ -1839,6 +1909,8 @@ namespace WebsitePanel.EnterpriseServer {
                         cpuCores,
                         ramMB,
                         hddGB,
+                        hddIOPSmin,
+                        hddIOPSmax,
                         snapshots,
                         dvdInstalled,
                         bootFromCD,
@@ -1859,7 +1931,9 @@ namespace WebsitePanel.EnterpriseServer {
                     int itemId, 
                     int cpuCores, 
                     int ramMB, 
-                    int hddGB, 
+                    int hddGB,
+                    int hddIOPSmin, 
+                    int hddIOPSmax,
                     int snapshots, 
                     bool dvdInstalled, 
                     bool bootFromCD, 
@@ -1879,6 +1953,8 @@ namespace WebsitePanel.EnterpriseServer {
                         cpuCores,
                         ramMB,
                         hddGB,
+                        hddIOPSmin,
+                        hddIOPSmax,
                         snapshots,
                         dvdInstalled,
                         bootFromCD,
@@ -1904,7 +1980,9 @@ namespace WebsitePanel.EnterpriseServer {
                     int itemId, 
                     int cpuCores, 
                     int ramMB, 
-                    int hddGB, 
+                    int hddGB,
+                    int hddIOPSmin, 
+                    int hddIOPSmax,
                     int snapshots, 
                     bool dvdInstalled, 
                     bool bootFromCD, 
@@ -1917,7 +1995,7 @@ namespace WebsitePanel.EnterpriseServer {
                     bool externalNetworkEnabled, 
                     bool privateNetworkEnabled, 
                     VirtualMachine otherSettings) {
-            this.UpdateVirtualMachineConfigurationAsync(itemId, cpuCores, ramMB, hddGB, snapshots, dvdInstalled, bootFromCD, numLock, startShutdownAllowed, pauseResumeAllowed, rebootAllowed, resetAllowed, reinstallAllowed, externalNetworkEnabled, privateNetworkEnabled, otherSettings, null);
+            this.UpdateVirtualMachineConfigurationAsync(itemId, cpuCores, ramMB, hddGB, hddIOPSmin, hddIOPSmax, snapshots, dvdInstalled, bootFromCD, numLock, startShutdownAllowed, pauseResumeAllowed, rebootAllowed, resetAllowed, reinstallAllowed, externalNetworkEnabled, privateNetworkEnabled, otherSettings, null);
         }
         
         /// <remarks/>
@@ -1925,7 +2003,9 @@ namespace WebsitePanel.EnterpriseServer {
                     int itemId, 
                     int cpuCores, 
                     int ramMB, 
-                    int hddGB, 
+                    int hddGB,
+                    int hddIOPSmin, 
+                    int hddIOPSmax,
                     int snapshots, 
                     bool dvdInstalled, 
                     bool bootFromCD, 
@@ -1947,6 +2027,8 @@ namespace WebsitePanel.EnterpriseServer {
                         cpuCores,
                         ramMB,
                         hddGB,
+                        hddIOPSmin,
+                        hddIOPSmax,
                         snapshots,
                         dvdInstalled,
                         bootFromCD,
@@ -3688,7 +3770,7 @@ namespace WebsitePanel.EnterpriseServer {
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.42")]
     public delegate void EvaluateVirtualMachineTemplateCompletedEventHandler(object sender, EvaluateVirtualMachineTemplateCompletedEventArgs e);
@@ -4156,7 +4238,37 @@ namespace WebsitePanel.EnterpriseServer {
             }
         }
     }
-    
+
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.42")]
+    public delegate void GetVirtualMachineConfigurationDetailsCompletedEventHandler(object sender, GetVirtualMachineConfigurationDetailsCompletedEventArgs e);
+
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.42")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetVirtualMachineConfigurationDetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
+    {
+
+        private object[] results;
+
+        internal GetVirtualMachineConfigurationDetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) :
+            base(exception, cancelled, userState)
+        {
+            this.results = results;
+        }
+
+        /// <remarks/>
+        public VirtualMachine Result
+        {
+            get
+            {
+                this.RaiseExceptionIfNecessary();
+                return ((VirtualMachine)(this.results[0]));
+            }
+        }
+    }
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.42")]
     public delegate void GetVirtualMachineExtendedInfoCompletedEventHandler(object sender, GetVirtualMachineExtendedInfoCompletedEventArgs e);

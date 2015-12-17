@@ -62,7 +62,8 @@ namespace WebsitePanel.Portal.VPS2012
             try
             {
                 // load machine
-                vm = ES.Services.VPS2012.GetVirtualMachineItem(PanelRequest.ItemID);
+                //vm = ES.Services.VPS2012.GetVirtualMachineItem(PanelRequest.ItemID);
+                vm = ES.Services.VPS2012.GetVirtualMachineConfigurationDetails(PanelRequest.ItemID);
 
                 if (vm == null)
                 {
@@ -76,6 +77,8 @@ namespace WebsitePanel.Portal.VPS2012
                 litCpu.Text = String.Format(GetLocalizedString("CpuCores.Text"), vm.CpuCores);
                 litRam.Text = String.Format(GetLocalizedString("Ram.Text"), vm.RamSize);
                 litHdd.Text = String.Format(GetLocalizedString("Hdd.Text"), vm.HddSize);
+                litHddIOPSmin.Text = String.Format(GetLocalizedString("HddIOPSmin.Text"), vm.IOPSmin); //vm.IOPSmin.ToString();
+                litHddIOPSmax.Text = String.Format(GetLocalizedString("HddIOPSmax.Text"), vm.IOPSmax); //vm.IOPSmax.ToString();
                 litSnapshots.Text = vm.SnapshotsNumber.ToString();
 
                 optionDvdInstalled.Value = vm.DvdDriveInstalled;

@@ -206,6 +206,9 @@ namespace WebsitePanel.Portal.VPS2012
                     txtHdd.Text = availSize < 0 ? "" : availSize.ToString();
                 }
             }
+            // TEMP - IOPS default val also disabled
+            txtHddIOPSmin.Text = "0";
+            txtHddIOPSmax.Text = "0";
 
             // snapshots number
             if (cntx.Quotas.ContainsKey(Quotas.VPS2012_SNAPSHOTS_NUMBER))
@@ -275,6 +278,8 @@ namespace WebsitePanel.Portal.VPS2012
             litCpu.Text = PortalAntiXSS.Encode(ddlCpu.SelectedValue);
             litRam.Text = PortalAntiXSS.Encode(txtRam.Text.Trim());
             litHdd.Text = PortalAntiXSS.Encode(txtHdd.Text.Trim());
+            litHddIOPSmin.Text = PortalAntiXSS.Encode(txtHddIOPSmin.Text.Trim());
+            litHddIOPSmax.Text = PortalAntiXSS.Encode(txtHddIOPSmax.Text.Trim());
             litSnapshots.Text = PortalAntiXSS.Encode(txtSnapshots.Text.Trim());
             optionDvdInstalled.Value = chkDvdInstalled.Checked;
             optionBootFromCd.Value = chkBootFromCd.Checked;
@@ -339,7 +344,8 @@ namespace WebsitePanel.Portal.VPS2012
                 IntResult res = ES.Services.VPS2012.CreateVirtualMachine(PanelSecurity.PackageId,
                     hostname, listOperatingSystems.SelectedValue, adminPassword, summaryEmail,
                     Utils.ParseInt(ddlCpu.SelectedValue), Utils.ParseInt(txtRam.Text.Trim()),
-                    Utils.ParseInt(txtHdd.Text.Trim()), Utils.ParseInt(txtSnapshots.Text.Trim()),
+                    Utils.ParseInt(txtHdd.Text.Trim()), Utils.ParseInt(txtHddIOPSmin.Text.Trim()),
+                    Utils.ParseInt(txtHddIOPSmax.Text.Trim()), Utils.ParseInt(txtSnapshots.Text.Trim()),
                     chkDvdInstalled.Checked, chkBootFromCd.Checked, chkNumLock.Checked,
                     chkStartShutdown.Checked, chkPauseResume.Checked, chkReboot.Checked, chkReset.Checked, chkReinstall.Checked,
                     chkExternalNetworkEnabled.Checked, Utils.ParseInt(txtExternalAddressesNumber.Text.Trim()), radioExternalRandom.Checked, extIps.ToArray(),

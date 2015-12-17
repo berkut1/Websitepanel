@@ -79,6 +79,10 @@ namespace WebsitePanel.Providers.Virtualization
         public int HddSize { get; set; }
         public LogicalDisk[] HddLogicalDisks { get; set; }
         [Persistent]
+        public int IOPSmin { get; set; }
+        [Persistent]
+        public int IOPSmax { get; set; }
+        [Persistent]
         public int SnapshotsNumber { get; set; }
 
         [Persistent]

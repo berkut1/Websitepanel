@@ -83,6 +83,10 @@ namespace WebsitePanel.Providers.Virtualization
         [Persistent]
         public int HddSize { get; set; }
         [Persistent]
+        public int IOPSmin { get; set; }
+        [Persistent]
+        public int IOPSmax { get; set; }
+        [Persistent]
         public int SnapshotsNumber { get; set; }
         [Persistent]
         public bool BootFromCD { get; set; }

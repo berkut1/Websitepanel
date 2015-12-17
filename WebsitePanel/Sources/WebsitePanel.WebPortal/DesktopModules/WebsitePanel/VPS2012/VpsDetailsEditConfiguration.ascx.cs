@@ -55,7 +55,8 @@ namespace WebsitePanel.Portal.VPS2012
             try
             {
                 // load machine
-                vm = ES.Services.VPS2012.GetVirtualMachineItem(PanelRequest.ItemID);
+                //vm = ES.Services.VPS2012.GetVirtualMachineItem(PanelRequest.ItemID);
+                vm = ES.Services.VPS2012.GetVirtualMachineConfigurationDetails(PanelRequest.ItemID);
 
                 if (vm == null)
                 {
@@ -82,6 +83,8 @@ namespace WebsitePanel.Portal.VPS2012
                 ddlCpu.SelectedValue = vm.CpuCores.ToString();
                 txtRam.Text = vm.RamSize.ToString();
                 txtHdd.Text = vm.HddSize.ToString();
+                txtHddIOPSmin.Text = vm.IOPSmin.ToString();
+                txtHddIOPSmax.Text = vm.IOPSmax.ToString();
                 txtSnapshots.Text = vm.SnapshotsNumber.ToString();
 
                 chkDvdInstalled.Checked = vm.DvdDriveInstalled;
@@ -158,6 +161,8 @@ namespace WebsitePanel.Portal.VPS2012
                     Utils.ParseInt(ddlCpu.SelectedValue),
                     Utils.ParseInt(txtRam.Text.Trim()),
                     Utils.ParseInt(txtHdd.Text.Trim()),
+                    Utils.ParseInt(txtHddIOPSmin.Text.Trim()),
+                    Utils.ParseInt(txtHddIOPSmax.Text.Trim()),
                     Utils.ParseInt(txtSnapshots.Text.Trim()),
                     chkDvdInstalled.Checked,
                     chkBootFromCd.Checked,

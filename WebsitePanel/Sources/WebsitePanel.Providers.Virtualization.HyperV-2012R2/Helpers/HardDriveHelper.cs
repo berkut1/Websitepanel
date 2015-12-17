@@ -24,8 +24,8 @@ namespace WebsitePanel.Providers.Virtualization
                     VirtualHardDiskInfo disk = new VirtualHardDiskInfo();
 
                     disk.SupportPersistentReservations = Convert.ToBoolean(d.GetProperty("SupportPersistentReservations"));
-                    disk.MaximumIOPS = Convert.ToUInt64(d.GetProperty("MaximumIOPS"));
-                    disk.MinimumIOPS = Convert.ToUInt64(d.GetProperty("MinimumIOPS"));
+                    disk.MaximumIOPS = Convert.ToInt32(d.GetProperty("MaximumIOPS"));
+                    disk.MinimumIOPS = Convert.ToInt32(d.GetProperty("MinimumIOPS"));
                     disk.VHDControllerType = d.GetEnum<ControllerType>("ControllerType");
                     disk.ControllerNumber = Convert.ToInt32(d.GetProperty("ControllerNumber"));
                     disk.ControllerLocation = Convert.ToInt32(d.GetProperty("ControllerLocation"));
@@ -38,6 +38,32 @@ namespace WebsitePanel.Providers.Virtualization
                 }
             }
             return disks.ToArray();
+        }
+
+        public static void UpdateIOPS(PowerShellManager powerShell, VirtualMachine vm, int IOPSmin, int IOPSmax)
+        {
+            if (vm.Disks != null && (IOPSmax >= IOPSmin))
+            {
+                foreach (VirtualHardDiskInfo d in vm.Disks)
+                {
+                    Command cmd = new Command("Set-VMHardDiskDrive");
+                    cmd.Parameters.Add("VMName", vm.Name);
+                    cmd.Parameters.Add("ControllerType", d.VHDControllerType.ToString());
+                    cmd.Parameters.Add("ControllerNumber", d.ControllerNumber);
+                    cmd.Parameters.Add("ControllerLocation", d.ControllerLocation);
+                    if (IOPSmin == IOPSmax) //disable QoS control
+                    {
+                        cmd.Parameters.Add("MinimumIOPS", false);
+                        cmd.Parameters.Add("MaximumIOPS", false);
+                    }
+                    else
+                    {
+                        cmd.Parameters.Add("MinimumIOPS", IOPSmin);
+                        cmd.Parameters.Add("MaximumIOPS", IOPSmax);
+                    }
+                    powerShell.Execute(cmd, true, true);
+                }
+            }
         }
 
         //public static VirtualHardDiskInfo GetByPath(PowerShellManager powerShell, string vhdPath)

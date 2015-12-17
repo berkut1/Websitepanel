@@ -194,13 +194,13 @@ namespace WebsitePanel.Providers.Virtualization
 
                         // HDD
                         vm.Disks = HardDriveHelper.Get(PowerShell, vm.Name);
-
                         if (vm.Disks != null && vm.Disks.GetLength(0) > 0)
                         {
                             vm.VirtualHardDrivePath = vm.Disks[0].Path;
-                            vm.HddSize = Convert.ToInt32(vm.Disks[0].FileSize / Constants.Size1G);
+                            vm.HddSize = Convert.ToInt32(vm.Disks[0].MaxInternalSize / Constants.Size1G);
+                            vm.IOPSmin = vm.Disks[0].MinimumIOPS;
+                            vm.IOPSmax = vm.Disks[0].MaximumIOPS;
                         }
-
                         // network adapters
                         vm.Adapters = NetworkAdapterHelper.Get(PowerShell, vm.Name);
                     }
@@ -399,6 +399,7 @@ namespace WebsitePanel.Providers.Virtualization
                 VirtualMachineHelper.UpdateProcessors(PowerShell, realVm, vm.CpuCores, CpuLimitSettings, CpuReserveSettings, CpuWeightSettings);
                 MemoryHelper.Update(PowerShell, realVm, vm.RamSize, vm.DynamicMemory);
                 NetworkAdapterHelper.Update(PowerShell, vm);
+                HardDriveHelper.UpdateIOPS(PowerShell, realVm, vm.IOPSmin, vm.IOPSmax); //IOPS (TODO: for update IOPS dont need reboot)
             }
             catch (Exception ex)
             {

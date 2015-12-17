@@ -375,4 +375,22 @@
   <data name="locDynamicMemory.Text" xml:space="preserve">
     <value>Dynamic Memory</value>
   </data>
+  <data name="lblHddIOPSmax.Text" xml:space="preserve">
+    <value>Maximum:</value>
+  </data>
+  <data name="lblHddIOPSmin.Text" xml:space="preserve">
+    <value>Minimum:</value>
+  </data>
+  <data name="locIOPSmax.Text" xml:space="preserve">
+    <value>IOPS</value>
+  </data>
+  <data name="locIOPSmin.Text" xml:space="preserve">
+    <value>IOPS</value>
+  </data>
+  <data name="RequireHddIOPSmaxValidator.ErrorMessage" xml:space="preserve">
+    <value>Please specify IOPS</value>
+  </data>
+  <data name="RequireHddIOPSminValidator.ErrorMessage" xml:space="preserve">
+    <value>Please specify IOPS</value>
+  </data>
 </root>
