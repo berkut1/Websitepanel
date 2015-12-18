@@ -176,30 +176,39 @@
                                                 <td><asp:Localize ID="locGB" runat="server" meta:resourcekey="locGB" Text="GB"/></td>
                                             </tr>
                                         </table>
+                                    </asp:Panel>
+                                    
+                                    <wsp:CollapsiblePanel id="secQOS" runat="server" IsCollapsed="true"
+                                        TargetControlID="QOSPanel" meta:resourcekey="secQOS" Text="Hard Drive Quality of Service management">
+                                    </wsp:CollapsiblePanel>
+                                    <asp:Panel ID="QOSPanel" runat="server" Height="0" style="overflow:hidden;padding:10px;width:400px;">
+                                        <p class="IOPSSubTitle">
+		                                    <asp:Localize ID="locIOPSSubTitle" runat="server" meta:resourcekey="locIOPSSubTitle" Text="Default value is 0" />
+		                                </p>
                                         <table cellpadding="3">
                                             <tr>
                                                 <td class="FormLabel150"><asp:Label ID="lbltxtHddIOPSmin" runat="server"
-                                                        meta:resourcekey="txtHddIOPSmin" Text="IOPS Min:" /></td>
+                                                        meta:resourcekey="lbltxtHddIOPSmin" Text="IOPS Min:" /></td>
                                                 <td>
                                                     <asp:TextBox ID="txtHddIOPSmin" runat="server" CssClass="HugeTextBox" Width="70"></asp:TextBox>
                                                     <asp:RequiredFieldValidator ID="RequireHddIOPSminValidator" runat="server" Text="*" Display="Dynamic"
                                                          ControlToValidate="txtHddIOPSmin" meta:resourcekey="RequireHddIOPSminValidator" SetFocusOnError="true"
                                                          ValidationGroup="Vps">*</asp:RequiredFieldValidator>
                                                 </td>      
-                                                <td><asp:Localize ID="locIOPSmin" runat="server" meta:resourcekey="locIOPSmin" Text="8k"/></td>                          
+                                                <td><asp:Localize ID="locIOPSmin" runat="server" meta:resourcekey="locIOPSmin" Text="IOPS"/></td>                          
                                             </tr>
                                         </table>
                                         <table cellpadding="3">
                                             <tr>
                                                 <td class="FormLabel150"><asp:Label ID="lbltxtHddIOPSmax" runat="server"
-                                                        meta:resourcekey="txtHddIOPSmax" Text="IOPS Max:" /></td>
+                                                        meta:resourcekey="lbltxtHddIOPSmax" Text="IOPS Max:" /></td>
                                                 <td>
                                                     <asp:TextBox ID="txtHddIOPSmax" runat="server" CssClass="HugeTextBox" Width="70"></asp:TextBox>
                                                     <asp:RequiredFieldValidator ID="RequireHddIOPSmaxValidator" runat="server" Text="*" Display="Dynamic"
                                                         ControlToValidate="txtHddIOPSmax" meta:resourcekey="RequireHddIOPSmaxValidator" SetFocusOnError="true"
                                                         ValidationGroup="Vps">*</asp:RequiredFieldValidator>
                                                 </td>   
-                                                <td><asp:Localize ID="locIOPSmax" runat="server" meta:resourcekey="locIOPSmax" Text="8k"/></td>                             
+                                                <td><asp:Localize ID="locIOPSmax" runat="server" meta:resourcekey="locIOPSmax" Text="IOPS"/></td>                             
                                             </tr>
                                         </table>
                                     </asp:Panel>

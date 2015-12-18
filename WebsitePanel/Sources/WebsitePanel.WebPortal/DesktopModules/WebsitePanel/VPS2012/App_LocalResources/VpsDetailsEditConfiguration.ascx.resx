@@ -231,4 +231,7 @@
   <data name="RequireHddIOPSminValidator.ErrorMessage" xml:space="preserve">
     <value>Please specify IOPS</value>
   </data>
+  <data name="locIOPSSubTitle.Text" xml:space="preserve">
+    <value>Default value is 0</value>
+  </data>
 </root>

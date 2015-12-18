@@ -77,6 +77,15 @@
                                 </td>
                             </tr>
                         </table>
+                    </asp:Panel>
+
+                    <wsp:CollapsiblePanel id="secQOS" runat="server" IsCollapsed="true"
+                        TargetControlID="QOSPanel" meta:resourcekey="secQOS" Text="Hard Drive Quality of Service management">
+                    </wsp:CollapsiblePanel>
+                    <asp:Panel ID="QOSPanel" runat="server" Height="0" style="overflow:hidden;padding:10px;width:400px;">
+                        <p class="IOPSSubTitle">
+		                <asp:Localize ID="locIOPSSubTitle" runat="server" meta:resourcekey="locIOPSSubTitle" Text="Default value is 0" />
+		                </p>
                         <table cellspacing="5">
                             <tr>
                                 <td class="Medium"><asp:Localize ID="lblHddIOPSmin" runat="server"

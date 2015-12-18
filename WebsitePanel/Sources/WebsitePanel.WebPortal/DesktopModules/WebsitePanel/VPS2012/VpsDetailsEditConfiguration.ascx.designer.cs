@@ -175,6 +175,33 @@ namespace WebsitePanel.Portal.VPS2012 {
         protected global::System.Web.UI.WebControls.Localize locGB;
         
         /// <summary>
+        /// secQOS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::WebsitePanel.Portal.CollapsiblePanel secQOS;
+        
+        /// <summary>
+        /// QOSPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel QOSPanel;
+        
+        /// <summary>
+        /// locIOPSSubTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Localize locIOPSSubTitle;
+        
+        /// <summary>
         /// lblHddIOPSmin control.
         /// </summary>
         /// <remarks>

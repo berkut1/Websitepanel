@@ -231,4 +231,7 @@
   <data name="lblHddIOPSmin.Text" xml:space="preserve">
     <value>Minimum:</value>
   </data>
+  <data name="locIOPSSubTitle.Text" xml:space="preserve">
+    <value>Default value is 0</value>
+  </data>
 </root>
